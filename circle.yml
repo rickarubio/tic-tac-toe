@@ -1,0 +1,6 @@
+deployment:
+  staging:
+    branch: master
+    commands:
+      - git push git@heroku.com:tic-tac-toe-rails.git master
+      - heroku run rake db:migrate --app tic-tac-toe-rails
