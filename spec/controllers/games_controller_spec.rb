@@ -4,7 +4,14 @@ describe GamesController do
   describe '#create' do
     describe 'game is saved successfully' do
       it 'renders show template' do
-        post :create
+        player1 = build(:player)
+        player2 = build(:player)
+
+        post(
+          :create,
+          player1: { name: player1.name },
+          player2: { name: player2.name }
+        )
 
         expect(response).to redirect_to(assigns(:game))
       end
@@ -13,8 +20,14 @@ describe GamesController do
     describe 'game is not saved successfully' do
       it 'renders new template' do
         allow_any_instance_of(Game).to receive(:save).and_return(false)
+        player1 = build(:player)
+        player2 = build(:player)
 
-        post :create
+        post(
+          :create,
+          player1: { name: player1.name },
+          player2: { name: player2.name }
+        )
 
         expect(response).to render_template(:new)
       end

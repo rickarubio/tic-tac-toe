@@ -25,6 +25,7 @@ end
 group :test do
   gem 'capybara'
   gem 'capybara-webkit'
+  gem 'shoulda-matchers'
 end
 
 group :production do

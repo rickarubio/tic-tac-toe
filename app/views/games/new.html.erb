@@ -1,3 +1,15 @@
 <%= form_for(@game) do |f| %>
+  <%= fields_for :player1 do |p| %>
+    <p>
+      <%= p.label "Player1 Name: "%>
+      <%= p.text_field :name %>
+    </p>
+  <% end %>
+  <%= fields_for :player2 do |p| %>
+    <p>
+      <%= p.label "Player2 Name: "%>
+      <%= p.text_field :name %>
+    </p>
+  <% end %>
   <%= f.submit "Start a Game" %>
 <% end %>
