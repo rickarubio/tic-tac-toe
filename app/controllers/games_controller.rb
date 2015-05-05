@@ -10,6 +10,13 @@ class GamesController < ApplicationController
 
     if @game.save && @player1.save && @player2.save
       @game.players.push(@player1, @player2)
+      @board = Board.create(game_id: @game.id)
+      Board.valid_board_positions.each do |position|
+        Cell.create(
+          board_id: @board.id,
+          board_position: position
+        )
+      end
       redirect_to @game
     else
       render :new
