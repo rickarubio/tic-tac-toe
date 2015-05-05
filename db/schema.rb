@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150505034622) do
+ActiveRecord::Schema.define(version: 20150505074804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,13 +30,16 @@ ActiveRecord::Schema.define(version: 20150505034622) do
     t.datetime "updated_at"
     t.integer  "board_id"
     t.integer  "board_position"
+    t.integer  "turn_id"
   end
 
   add_index "cells", ["board_id"], name: "index_cells_on_board_id", using: :btree
+  add_index "cells", ["turn_id"], name: "index_cells_on_turn_id", using: :btree
 
   create_table "games", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "finished",   default: false
   end
 
   create_table "players", force: :cascade do |t|
@@ -44,8 +47,19 @@ ActiveRecord::Schema.define(version: 20150505034622) do
     t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "winner"
   end
 
   add_index "players", ["game_id"], name: "index_players_on_game_id", using: :btree
+
+  create_table "turns", force: :cascade do |t|
+    t.integer  "game_id"
+    t.integer  "player_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "turns", ["game_id"], name: "index_turns_on_game_id", using: :btree
+  add_index "turns", ["player_id"], name: "index_turns_on_player_id", using: :btree
 
 end

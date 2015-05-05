@@ -1,24 +1,28 @@
-<div class="game-board" data-role="<%= controller_name %>#<%= action_name %>">
+<div class="game-board"
+     data-role="<%= controller_name %>#<%= action_name %>"
+     data-game-id="<%= @game.id %>">
   <div class="game-board__info">
     <p>This is game # <%= @game.id %></p>
-    <p class="player1-name">Player1 is <%= @player1.name %> as X</p>
-    <p class="player2-name">Player2 is <%= @player2.name %> as O</p>
+    <p class="player1-name"
+      data-player1-name="<%= @player1.name %>">Player1 is <%= @player1.name %> as X</p>
+    <p class="player2-name"
+      data-player2-name="<%= @player2.name %>">Player2 is <%= @player2.name %> as O</p>
   </div>
   <table>
     <tr class="game-board__row">
-      <td class="game-board__cell"></td>
-      <td class="game-board__cell"></td>
-      <td class="game-board__cell"></td>
+      <td class="game-board__cell" data-board-position="1"></td>
+      <td class="game-board__cell" data-board-position="2"></td>
+      <td class="game-board__cell" data-board-position="3"></td>
     </tr>
     <tr class="game-board__row">
-      <td class="game-board__cell"></td>
-      <td class="game-board__cell"></td>
-      <td class="game-board__cell"></td>
+      <td class="game-board__cell" data-board-position="4"></td>
+      <td class="game-board__cell" data-board-position="5"></td>
+      <td class="game-board__cell" data-board-position="6"></td>
     </tr>
     <tr class="game-board__row">
-      <td class="game-board__cell"></td>
-      <td class="game-board__cell"></td>
-      <td class="game-board__cell"></td>
+      <td class="game-board__cell" data-board-position="7"></td>
+      <td class="game-board__cell" data-board-position="8"></td>
+      <td class="game-board__cell" data-board-position="9"></td>
     </tr>
   </table>
 </div>
