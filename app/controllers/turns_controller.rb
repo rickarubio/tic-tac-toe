@@ -11,13 +11,22 @@ class TurnsController < ApplicationController
     if @cell.value.nil? && !@game.finished
       @cell.value = params[:value]
       @cell.save
+      @turn.cell = @cell
+      @turn.save
+
+      render json: {
+        cellValue: @cell.value
+      }, status: :created
+    else
+      render_error
     end
+  end
 
-    @turn.cell = @cell
-    @turn.save
+  private
 
+  def render_error
     render json: {
-      cellValue: @cell.value
-    }, status: :created
+      error: 'invalid move'
+    }, status: :internal_server_error
   end
 end

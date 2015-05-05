@@ -42,12 +42,11 @@ Game = {};
       data: data,
       success: function(data) {
         $(cell.cellElement).text(data.cellValue);
+        turn = turn + 1;
       },
       error: function(data) {
       }
     });
-
-    turn = turn + 1;
   };
 
   Game.listenForClicks = function() {
